@@ -10,5 +10,10 @@ module top_module(
 
     // m = 3 ---------------------------------
     // using loop 
+    parameter N = 8;
+    always @(*) begin	
+        for (int i=0; i<N; i++)	// int is a SystemVerilog type. Use integer for pure Verilog.
+            out[(N-1)-i] = in[i];
+	end
 
 endmodule
