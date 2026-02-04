@@ -4,12 +4,19 @@ module top_module(
     input [1:0] ena,
     input [99:0] data,
     output reg [99:0] q); 
-    
+
+
+    // Theory
+    // This rotator has 4 modes:
+	//   load
+	//   rotate left
+	//   rotate right
+	//   do nothing
     parameter N = 99;   // number of bits - 1  // for scalable code
     always @(posedge clk)begin
         if (load) q <= data;
         else case(ena)
-            2'b01: q <= {q[0], q[N:1]};
+            2'b01: q <= {q[0], q[N:1]};        // rotation using vector part select and concatenation
             2'b10: q <= {q[N-1:0],q[N]};
         endcase
     end
