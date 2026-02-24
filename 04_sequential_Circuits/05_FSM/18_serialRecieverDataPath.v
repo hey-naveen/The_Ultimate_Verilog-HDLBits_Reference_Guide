@@ -14,7 +14,7 @@ module top_module(
     // latching data on posedge clk
     always @(posedge clk) begin
         if (next == recv) begin
-            temp_data = {in, temp_data[7:1]};	// using right shift register
+            temp_data = {in, temp_data[7:1]};	// using right shift register (LSB goes in First)
         end
     end
     
