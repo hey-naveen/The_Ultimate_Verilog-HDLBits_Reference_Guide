@@ -14,9 +14,18 @@ module top_module(
     // latching data on posedge clk
     always @(posedge clk) begin
         if (next == recv) begin
-            temp_data = {in, temp_data[7:1]};	// using right shift register (LSB goes in First)
+            temp_data = {in, temp_data[7:1]};	// using right shift register (LSB goes in First) (data moves index to index)
         end
     end
+
+    // m = 2 for latching of data using RAM (data stays at one place)
+    /*
+    always @(posedge clk) begin
+        if (reset) temp_data <= 0;
+        else if (next == recv)
+            temp_data[count] <= in;
+    end
+    */
     
     // same as serial reciever
     // ------------------------------------------------------
