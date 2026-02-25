@@ -11,10 +11,10 @@ module top_module(
     // m==2: ------------------------------------------------------------------------
     // 1. we declared 9 bit data with 9th bit (msb) as parity and [7:0] as databyte
     // 2. Used xor for calculating parity
-    // 3. outbyte is databyte[7:0], neglecting the parity bit
+    // 3. outbyte is databyte[7:0], excluding the parity bit
+    // 4. counter start from 1 and goes to 9. (as taken next state in the clock).
 
   /*
-
     // Modify FSM and datapath from Fsm_serialdata
     reg [2:0] state, next;
     parameter IDLE = 0, START = 1, RECV = 2, WAIT = 3, STOP = 4;
@@ -46,7 +46,7 @@ module top_module(
         else begin
             state <= next;
             if (next == RECV) begin
-                data = {in, data[8:1]};
+                data <= {in, data[8:1]};
                i++; 
             end
             else i <= 0;
