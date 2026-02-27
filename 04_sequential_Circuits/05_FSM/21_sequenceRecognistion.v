@@ -54,7 +54,7 @@ module top_module(
         case(state)
             IDLE: next= in  ? COUNT : IDLE;
             
-          COUNT : begin
+          COUNT : begin        // can be done using ternary operators only, but we need to check for 4 conditions
               if (counter <5) next = in ? COUNT : IDLE;
               else if (counter == 5) next = in ? SIX : DISC;
               else next=SIX;
